@@ -1,6 +1,6 @@
 import { ThemeProvider } from './theme';
-import Router from './routes/Router';
-import Shell from './components/Shell/Shell';
+import Router from './routes';
+import Shell from './components/Shell';
 
 function App() {
   return (
