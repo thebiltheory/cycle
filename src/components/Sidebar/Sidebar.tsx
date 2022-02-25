@@ -1,6 +1,7 @@
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import NavigationItem from '../NavigationItem';
 import { Drawer, ExpandDrawerBg, ExpandDrawerButton } from './Sidebar.styles';
 
 const Sidebar = () => {
@@ -24,27 +25,27 @@ const Sidebar = () => {
           PaperProps={{ sx: { border: 'none' } }}
         >
           <Box bgcolor="black" width="240px" color="white">
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
+            <NavigationItem
+              className="active"
+              leftElement={<>🚀</>}
+              onClick={() => console.log('Onclick ...')}
+            />
+
+            <NavigationItem
+              className="active"
+              leftElement={<>🚀</>}
+              onClick={() => console.log('Onclick ...')}
+              rightElement={<>🚀</>}
+              hideRightElementUntilHover
+            />
+
+            <NavigationItem
+              variant="secondary"
+              className="active"
+              leftElement={<>🚀</>}
+              onClick={() => console.log('Onclick ...')}
+              rightElement={<>🚀</>}
+            />
             <p>Sidebar</p>
             <p>Sidebar</p>
             <p>Sidebar</p>
