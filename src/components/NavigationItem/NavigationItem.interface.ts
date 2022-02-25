@@ -8,4 +8,5 @@ export interface INavigationItemProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
   hideRightElementUntilHover?: boolean;
+  active?: boolean;
 }

@@ -11,6 +11,7 @@ const NavigationItem: FC<INavigationItemProps> = ({
   rightElement,
   onClick,
   hideRightElementUntilHover = false,
+  active = false,
   ...props
 }) => {
   const [hideRightElement, setHideRightElement] = useState(
@@ -38,6 +39,12 @@ const NavigationItem: FC<INavigationItemProps> = ({
         },
       },
     },
+    active: {
+      sx: {
+        color: '#ffffff',
+        backgroundColor: active ? '#102DEA' : 'inherit',
+      },
+    },
   };
 
   const onClickHandler = (event: MouseEvent<HTMLElement>) => {
@@ -53,9 +60,10 @@ const NavigationItem: FC<INavigationItemProps> = ({
 
   return (
     <ButtonUnstyled
+      component={NavigationItemBase}
       {...props}
       {...styleProps[variant]}
-      component={NavigationItemBase}
+      {...(active && styleProps.active)}
       {...(onClick && { onClick: onClickHandler })}
       {...(hideRightElementUntilHover && {
         onMouseEnter: onHoverHandler,

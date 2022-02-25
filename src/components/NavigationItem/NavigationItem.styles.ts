@@ -15,7 +15,6 @@ const black = {
 export const NavigationItemBase = styled('div')`
   font-weight: bold;
   font-size: 0.875rem;
-  /* background-color: ${blue[500]}; */
   padding: 8px 24px;
   border-radius: 4px;
   color: #999999;

@@ -32,7 +32,6 @@ const Sidebar = () => {
             />
 
             <NavigationItem
-              className="active"
               leftElement={<>🚀</>}
               onClick={() => console.log('Onclick ...')}
               rightElement={<>🚀</>}
@@ -45,6 +44,14 @@ const Sidebar = () => {
               leftElement={<>🚀</>}
               onClick={() => console.log('Onclick ...')}
               rightElement={<>🚀</>}
+            />
+
+            <NavigationItem
+              active
+              variant="secondary"
+              className="active"
+              leftElement={<>🚀</>}
+              onClick={() => console.log('Onclick ...')}
             />
             <p>Sidebar</p>
             <p>Sidebar</p>
