@@ -1,6 +1,9 @@
+import { LinkProps, To } from 'react-router-dom';
+
 type TNavigationItemVariantProp = 'main' | 'secondary';
 
-export interface INavigationItemProps {
+export interface INavigationItemProps extends LinkProps {
+  label: string;
   variant?: TNavigationItemVariantProp;
   children?: React.ReactNode;
   leftElement?: React.ReactNode;
@@ -8,5 +11,4 @@ export interface INavigationItemProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
   hideRightElementUntilHover?: boolean;
-  active?: boolean;
 }

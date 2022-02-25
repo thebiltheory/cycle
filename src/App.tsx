@@ -1,13 +1,17 @@
 import { ThemeProvider } from './theme';
-import Router from './routes';
+
 import Shell from './components/Shell';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './routes';
 
 function App() {
   return (
     <ThemeProvider>
-      <Shell>
-        <Router />
-      </Shell>
+      <BrowserRouter>
+        <Shell>
+          <Router />
+        </Shell>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

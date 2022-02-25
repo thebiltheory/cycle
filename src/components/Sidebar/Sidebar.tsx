@@ -1,7 +1,9 @@
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import MainNavigator from '../../routes/Main.navigator';
 import NavigationItem from '../NavigationItem';
+import NavigationItemMenu from '../NavigationItem/NavigationItemMenu';
 import { Drawer, ExpandDrawerBg, ExpandDrawerButton } from './Sidebar.styles';
 
 const Sidebar = () => {
@@ -18,46 +20,19 @@ const Sidebar = () => {
 
   return (
     <>
-      <Stack direction="row" position="relative" overflow="visible">
+      <Stack
+        direction="row"
+        position="relative"
+        overflow="visible"
+        height="100vh"
+      >
         <Drawer
           variant="permanent"
           open={open}
           PaperProps={{ sx: { border: 'none' } }}
         >
-          <Box bgcolor="black" width="240px" color="white">
-            <NavigationItem
-              className="active"
-              leftElement={<>🚀</>}
-              onClick={() => console.log('Onclick ...')}
-            />
-
-            <NavigationItem
-              leftElement={<>🚀</>}
-              onClick={() => console.log('Onclick ...')}
-              rightElement={<>🚀</>}
-              hideRightElementUntilHover
-            />
-
-            <NavigationItem
-              variant="secondary"
-              className="active"
-              leftElement={<>🚀</>}
-              onClick={() => console.log('Onclick ...')}
-              rightElement={<>🚀</>}
-            />
-
-            <NavigationItem
-              active
-              variant="secondary"
-              className="active"
-              leftElement={<>🚀</>}
-              onClick={() => console.log('Onclick ...')}
-            />
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
-            <p>Sidebar</p>
+          <Box bgcolor="black" width="240px" color="white" height="100vh">
+            <MainNavigator />
           </Box>
         </Drawer>
         <ExpandDrawerBg

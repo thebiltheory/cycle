@@ -3,7 +3,7 @@ import { FC, MouseEvent, useState } from 'react';
 import { INavigationItemProps } from './NavigationItem.interface';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { NavigationItemBase } from './NavigationItem.styles';
-import { log } from 'console';
+import { Link, To, useMatch, useResolvedPath } from 'react-router-dom';
 
 const NavigationItem: FC<INavigationItemProps> = ({
   variant = 'main',
@@ -11,12 +11,16 @@ const NavigationItem: FC<INavigationItemProps> = ({
   rightElement,
   onClick,
   hideRightElementUntilHover = false,
-  active = false,
+  label,
+  to,
   ...props
 }) => {
   const [hideRightElement, setHideRightElement] = useState(
     hideRightElementUntilHover,
   );
+
+  const resolved = useResolvedPath(to);
+  const active = useMatch({ path: resolved?.pathname, end: true });
 
   const styleProps: any = {
     main: {
@@ -59,25 +63,32 @@ const NavigationItem: FC<INavigationItemProps> = ({
   };
 
   return (
-    <ButtonUnstyled
-      component={NavigationItemBase}
-      {...props}
-      {...styleProps[variant]}
-      {...(active && styleProps.active)}
-      {...(onClick && { onClick: onClickHandler })}
-      {...(hideRightElementUntilHover && {
-        onMouseEnter: onHoverHandler,
-        onMouseLeave: onHoverHandler,
-      })}
-    >
-      <Stack direction="row" justifyContent="space-between">
-        <Stack direction="row" spacing={styleProps[variant]?.iconSpacing}>
-          {leftElement && <Box>{leftElement}</Box>}
-          <Box>NavigationItem</Box>
+    <Link to={to} style={{ textDecoration: 'none' }}>
+      <ButtonUnstyled
+        component={NavigationItemBase}
+        {...props}
+        {...styleProps[variant]}
+        {...(active && styleProps.active)}
+        {...(onClick && { onClick: onClickHandler })}
+        {...(hideRightElementUntilHover && {
+          onMouseEnter: onHoverHandler,
+          onMouseLeave: onHoverHandler,
+        })}
+      >
+        <Stack direction="row" justifyContent="space-between" flex={1}>
+          <Stack
+            direction="row"
+            spacing={styleProps[variant]?.iconSpacing}
+            alignItems="center"
+          >
+            {leftElement && <Box>{leftElement}</Box>}
+            <Box>{label}</Box>
+          </Stack>
+          {/* {rightElement && !hideRightElement && <Box>{rightElement}</Box>} */}
+          {true && <Box>{rightElement}</Box>}
         </Stack>
-        {rightElement && !hideRightElement && <Box>{rightElement}</Box>}
-      </Stack>
-    </ButtonUnstyled>
+      </ButtonUnstyled>
+    </Link>
   );
 };
 
