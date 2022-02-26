@@ -1,18 +1,23 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Divider, Stack } from '@mui/material';
 import { useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import BoardsNavigator from '../../routes/Boards.navigator';
 import MainNavigator from '../../routes/Main.navigator';
-import NavigationItem from '../NavigationItem';
-import NavigationItemMenu from '../NavigationItem/NavigationItemMenu';
+import useUIState from '../../state/hooks/useUIState';
 import { Drawer, ExpandDrawerBg, ExpandDrawerButton } from './Sidebar.styles';
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const { UIState, dispatch } = useUIState();
+
   const [visible, setVisible] = useState(false);
 
   const onExpandSidebar = () => {
-    setOpen(!open);
+    const sidebarAction =
+      UIState.sidebarStatus === 'extended'
+        ? 'COLLAPSE_SIDEBAR'
+        : 'EXTEND_SIDEBAR';
+
+    dispatch(sidebarAction);
   };
 
   const onHoverExpand = () => {
@@ -29,13 +34,19 @@ const Sidebar = () => {
       >
         <Drawer
           variant="permanent"
-          open={open}
+          open={UIState.sidebarStatus === 'extended'}
           PaperProps={{ sx: { border: 'none' } }}
         >
-          <Box bgcolor="black" width="240px" color="white" height="100vh">
+          <Stack
+            bgcolor="black"
+            width="240px"
+            color="white"
+            height="100vh"
+            divider={<Divider />}
+          >
             <MainNavigator />
             <BoardsNavigator />
-          </Box>
+          </Stack>
         </Drawer>
         <ExpandDrawerBg
           onMouseEnter={onHoverExpand}
@@ -44,7 +55,7 @@ const Sidebar = () => {
         >
           {visible && (
             <ExpandDrawerButton onClick={onExpandSidebar} size="small">
-              {!open ? (
+              {UIState.sidebarStatus !== 'extended' ? (
                 <HiChevronRight color="white" />
               ) : (
                 <HiChevronLeft color="white" />

@@ -7,8 +7,6 @@ import { IExpandDrawerBgProps } from './Sidebar.interface';
 export const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => {
-  console.log('Hello');
-
   return {
     width: 240,
     flexShrink: 0,

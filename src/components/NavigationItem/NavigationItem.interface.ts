@@ -1,4 +1,4 @@
-import { LinkProps, To } from 'react-router-dom';
+import { LinkProps } from 'react-router-dom';
 
 type TNavigationItemVariantProp = 'main' | 'secondary';
 

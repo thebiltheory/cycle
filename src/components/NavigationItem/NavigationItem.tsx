@@ -1,9 +1,10 @@
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { Box, Stack } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
+import { useMatch, useResolvedPath } from 'react-router-dom';
+import useUIState from '../../state/hooks/useUIState';
 import { INavigationItemProps } from './NavigationItem.interface';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { NavigationItemBase } from './NavigationItem.styles';
-import { Link, To, useMatch, useResolvedPath } from 'react-router-dom';
 
 const NavigationItem: FC<INavigationItemProps> = ({
   variant = 'main',
@@ -19,6 +20,7 @@ const NavigationItem: FC<INavigationItemProps> = ({
     hideRightElementUntilHover,
   );
 
+  const { UIState } = useUIState();
   const resolved = useResolvedPath(to);
   const active = useMatch({ path: resolved?.pathname, end: true });
 
@@ -63,32 +65,34 @@ const NavigationItem: FC<INavigationItemProps> = ({
   };
 
   return (
-    <Link to={to} style={{ textDecoration: 'none' }}>
-      <ButtonUnstyled
-        component={NavigationItemBase}
-        {...props}
-        {...styleProps[variant]}
-        {...(active && styleProps.active)}
-        {...(onClick && { onClick: onClickHandler })}
-        {...(hideRightElementUntilHover && {
-          onMouseEnter: onHoverHandler,
-          onMouseLeave: onHoverHandler,
-        })}
-      >
-        <Stack direction="row" justifyContent="space-between" flex={1}>
-          <Stack
-            direction="row"
-            spacing={styleProps[variant]?.iconSpacing}
-            alignItems="center"
-          >
-            {leftElement && <Box>{leftElement}</Box>}
-            <Box>{label}</Box>
-          </Stack>
-          {/* {rightElement && !hideRightElement && <Box>{rightElement}</Box>} */}
-          {true && <Box>{rightElement}</Box>}
+    <ButtonUnstyled
+      to={to}
+      component={NavigationItemBase}
+      {...props}
+      {...(true && styleProps.collapsed)}
+      {...styleProps[variant]}
+      {...(active && styleProps.active)}
+      {...(onClick && { onClick: onClickHandler })}
+      {...(hideRightElementUntilHover && {
+        onMouseEnter: onHoverHandler,
+        onMouseLeave: onHoverHandler,
+      })}
+      sidebarStatus={UIState.sidebarStatus}
+    >
+      <Stack direction="row" justifyContent="space-between" flex={1}>
+        <Stack
+          direction="row"
+          spacing={styleProps[variant]?.iconSpacing}
+          alignItems="center"
+        >
+          {leftElement && <Box>{leftElement}</Box>}
+          {UIState.sidebarStatus === 'extended' && <Box>{label}</Box>}
         </Stack>
-      </ButtonUnstyled>
-    </Link>
+        {UIState.sidebarStatus === 'extended' &&
+          rightElement &&
+          !hideRightElement && <Box>{rightElement}</Box>}
+      </Stack>
+    </ButtonUnstyled>
   );
 };
 

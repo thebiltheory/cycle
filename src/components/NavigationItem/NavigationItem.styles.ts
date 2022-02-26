@@ -1,13 +1,9 @@
+import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { IconButton } from '@mui/material';
 import { styled } from '@mui/system';
-import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import { Link } from 'react-router-dom';
 
-const blue = {
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-};
-export const NavigationItemBase = styled('div')`
+export const NavigationItemBase = styled(Link)`
   font-weight: bold;
   font-size: 0.875rem;
   padding: 8px 24px;
@@ -19,6 +15,20 @@ export const NavigationItemBase = styled('div')`
   align-items: center;
   display: flex;
   flex: 1;
+  height: 32px;
+  text-decoration: none;
+
+  ${({ sidebarStatus }: any) => {
+    console.log(sidebarStatus);
+
+    if (sidebarStatus === 'collapsed') {
+      return `
+        justify-content: center;
+        align-items center;
+        width: 32px;
+      `;
+    }
+  }}
 
   &.${buttonUnstyledClasses.active} {
     background-color: 'red';
