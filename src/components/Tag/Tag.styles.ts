@@ -1,11 +1,6 @@
 import { Chip } from '@mui/material';
 import { styled } from '@mui/system';
 
-const variants = {
-  filled: {},
-  outlined: {},
-};
-
 const colorSchemes: any = {
   blue: {
     color: '#102DEA',

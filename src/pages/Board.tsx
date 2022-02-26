@@ -99,10 +99,12 @@ function Board() {
   };
 
   return (
-    <Stack height="100vh" py={2} overflow="hidden">
-      <Stack direction="row" spacing={2} px={4}>
+    <Stack height="100vh" py={2} overflow="hidden" spacing={2}>
+      <Stack direction="row" spacing={2} px={4} alignItems="center">
         <Typography>{icon}</Typography>
-        <Typography>{name}</Typography>
+        <Typography component="h1" fontWeight="bold" fontSize={24}>
+          {name}
+        </Typography>
       </Stack>
       <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
         <Droppable

@@ -1,14 +1,9 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { BiCaretDown, BiCaretRight } from 'react-icons/bi';
 import TicketList from '../TicketList';
 import { BoardColumnList } from './BoardColumn.styles';
-import {
-  BiCaretDown,
-  BiCaretLeft,
-  BiCaretRight,
-  BiCaretUp,
-} from 'react-icons/bi';
 
 const BoardColumn: FC<any> = ({ column, tickets, index }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -27,7 +22,7 @@ const BoardColumn: FC<any> = ({ column, tickets, index }) => {
           direction="column"
           bgcolor="#F0F0F0"
           p={1}
-          borderRadius={1}
+          borderRadius={2}
           width={isCollapsed ? 33 : '270px'}
           height={isCollapsed ? '100%' : 'auto'}
           // sx={{
@@ -51,9 +46,9 @@ const BoardColumn: FC<any> = ({ column, tickets, index }) => {
             })}
           >
             <Box>{isCollapsed ? <BiCaretRight /> : <BiCaretDown />}</Box>
-            <Stack direction={isCollapsed ? 'row' : 'row-reverse'} spacing={1}>
+            <Stack direction={'row'} spacing={1} mb={2}>
               <Typography>{column.icon}</Typography>
-              <Typography>{column.title}</Typography>
+              <Typography fontWeight="bold">{column.title}</Typography>
             </Stack>
           </Stack>
           {!isCollapsed && (
@@ -64,9 +59,10 @@ const BoardColumn: FC<any> = ({ column, tickets, index }) => {
                     <BoardColumnList
                       ref={provided.innerRef}
                       {...provided.droppableProps}
+                      borderRadius={2}
                       border={
                         isDraggingOver
-                          ? '2px dashed #999999'
+                          ? '2px dashed #bcbcbc'
                           : '2px solid transparent'
                       }
                     >
