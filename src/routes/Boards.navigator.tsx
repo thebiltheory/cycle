@@ -21,12 +21,12 @@ const BoardsNavigator = () => {
               label={name}
               sx={{ marginBottom: 1 }}
             >
-              {boards?.map(({ id, name, icon, slug }: any) => {
+              {boards?.map(({ id, name, icon }: any) => {
                 return (
                   <NavigationItem
                     variant="secondary"
                     key={id}
-                    to={`/${slug}`}
+                    to={`boards/${id}`}
                     label={name}
                     leftElement={icon}
                     rightElement={NavigationItemMenu}
