@@ -104,11 +104,7 @@ function Board() {
         <Typography>{icon}</Typography>
         <Typography>{name}</Typography>
       </Stack>
-      <DragDropContext
-        onDragStart={onDragStart}
-        // onDragUpdate
-        onDragEnd={onDragEnd}
-      >
+      <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
         <Droppable
           droppableId="all-board-columns"
           direction="horizontal"
@@ -122,6 +118,7 @@ function Board() {
               ref={provided.innerRef}
               overflow="auto"
               px={4}
+              height="100%"
             >
               {boardData.columnOrder.map((columnId: string, index: number) => {
                 const column = boardData.columns[columnId];
