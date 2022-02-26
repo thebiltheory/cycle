@@ -1,37 +1,25 @@
 import { Box, IconButton, styled } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import { log } from 'console';
+import { sidebarWidth } from '../../constants/ui';
 import { closedMixin, openedMixin } from '../../theme/utils';
 import { IExpandDrawerBgProps } from './Sidebar.interface';
 
-export const Drawer = styled(MuiDrawer, {
+export const Drawer = styled<any>(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => {
+})(({ theme, open }: any) => {
   return {
-    width: 240,
+    width: sidebarWidth.extended,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     overflow: 'visible',
     boxSizing: 'border-box',
     border: '10px solid red',
     ...(open && {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      overflowX: 'hidden',
+      ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
     }),
     ...(!open && {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      overflowX: 'hidden',
-      width: `calc(${theme.spacing(7)} + 1px)`,
-      [theme.breakpoints.up('sm')]: {
-        width: `calc(${theme.spacing(9)} + 1px)`,
-      },
+      ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
     }),
   };

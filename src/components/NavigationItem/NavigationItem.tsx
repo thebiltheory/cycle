@@ -55,7 +55,6 @@ const NavigationItem: FC<INavigationItemProps> = ({
 
   const onClickHandler = (event: MouseEvent<HTMLElement>) => {
     if (onClick) {
-      console.log('onClickHandler');
       onClick(event);
     }
   };
@@ -79,13 +78,18 @@ const NavigationItem: FC<INavigationItemProps> = ({
       })}
       sidebarStatus={UIState.sidebarStatus}
     >
-      <Stack direction="row" justifyContent="space-between" flex={1}>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        flex={1}
+        alignItems="center"
+      >
         <Stack
           direction="row"
           spacing={styleProps[variant]?.iconSpacing}
           alignItems="center"
         >
-          {leftElement && <Box>{leftElement}</Box>}
+          {leftElement && <Box p={0}>{leftElement}</Box>}
           {UIState.sidebarStatus === 'extended' && <Box>{label}</Box>}
         </Stack>
         {UIState.sidebarStatus === 'extended' &&

@@ -4,10 +4,25 @@ import { FiCommand, FiPlus } from 'react-icons/fi';
 import { BsFiles } from 'react-icons/bs';
 import NavigationItem from '../components/NavigationItem';
 import { Box, Stack } from '@mui/material';
+import useUIState from '../state/hooks/useUIState';
 
 const MainNavigator = () => {
+  const { UIState } = useUIState();
+  const isSidebarCollapsed = UIState.sidebarStatus === 'collapsed';
+
+  const conditionalStyles = {
+    collapsed: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  };
+
   return (
-    <Stack p={2} spacing={1}>
+    <Stack
+      p={1}
+      spacing={1}
+      {...(isSidebarCollapsed && conditionalStyles.collapsed)}
+    >
       <NavigationItem
         to="/search"
         label="Search"

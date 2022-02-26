@@ -1,3 +1,4 @@
+import { sidebarWidth } from './../constants/ui';
 export const openedMixin = (theme: any) => ({
   width: 240,
   transition: theme.transitions.create('width', {
@@ -13,8 +14,9 @@ export const closedMixin = (theme: any) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(9)} + 1px)`,
-  },
+  width: sidebarWidth.collapsed,
+  // width: `calc(${theme.spacing(7)} + 1px)`,
+  // [theme.breakpoints.up('sm')]: {
+  //   width: `calc(${theme.spacing(9)} + 1px)`,
+  // },
 });

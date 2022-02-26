@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const NavigationItemBase = styled(Link)`
   font-weight: bold;
   font-size: 0.875rem;
-  padding: 8px 24px;
+  padding: 8px;
   border-radius: 4px;
   color: #999999;
   transition: all 150ms ease;
