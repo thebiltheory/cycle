@@ -9,9 +9,7 @@ const TicketList: FC<any> = ({ tickets }) => {
   }, [tickets]);
 
   return cachedTickets.map((ticket: any, index: number) => (
-    <Ticket key={ticket.id} ticket={ticket} index={index}>
-      {ticket.content}
-    </Ticket>
+    <Ticket key={ticket.id} ticket={ticket} index={index} />
   ));
 };
 
