@@ -11,21 +11,18 @@ const MainNavigator = () => {
       <NavigationItem
         to="/search"
         label="Search"
-        className="active"
         leftElement={<HiSearch />}
         onClick={() => console.log('Onclick ...')}
       />
       <NavigationItem
         to="/notifications"
         label="Notifications"
-        className="active"
         leftElement={<RiNotificationBadgeLine />}
         onClick={() => console.log('Onclick ...')}
       />
       <NavigationItem
         to="/commands"
         label="Commands"
-        className="active"
         leftElement={<HiLightningBolt />}
         rightElement={
           <Stack direction="row" alignItems="center" spacing={1} flex={1}>
@@ -60,14 +57,12 @@ const MainNavigator = () => {
       <NavigationItem
         to="create-doc"
         label="Create doc"
-        className="active"
         leftElement={<FiPlus />}
         onClick={() => console.log('Onclick ...')}
       />
       <NavigationItem
         to="all-docs"
         label="All docs"
-        className="active"
         leftElement={<BsFiles />}
         onClick={() => console.log('Onclick ...')}
       />

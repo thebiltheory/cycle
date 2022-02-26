@@ -1,6 +1,7 @@
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import BoardsNavigator from '../../routes/Boards.navigator';
 import MainNavigator from '../../routes/Main.navigator';
 import NavigationItem from '../NavigationItem';
 import NavigationItemMenu from '../NavigationItem/NavigationItemMenu';
@@ -33,6 +34,7 @@ const Sidebar = () => {
         >
           <Box bgcolor="black" width="240px" color="white" height="100vh">
             <MainNavigator />
+            <BoardsNavigator />
           </Box>
         </Drawer>
         <ExpandDrawerBg
