@@ -46,6 +46,7 @@ const BoardsNavigator = () => {
         defaultCollapseIcon={<VscTriangleDown />}
         defaultExpandIcon={<VscTriangleRight />}
         sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto', padding: 2 }}
+        expanded={['SEC-1']}
       >
         {sections.map(({ id, name, boards }: any) => {
           return (
