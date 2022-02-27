@@ -29,6 +29,7 @@ const BoardColumn: FC<any> = ({ column, tickets, index, onClickNewDoc }) => {
           borderRadius={2}
           width={isCollapsed ? 33 : '270px'}
           height={isCollapsed ? '100%' : 'fit-content'}
+          maxHeight="90vh"
           pb={2}
           // sx={{
           //   willChange: 'width',
