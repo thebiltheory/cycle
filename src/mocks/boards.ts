@@ -124,3 +124,7 @@ export const boards: IBoard[] = [
 export function getBoardById(id: string | undefined): IBoard {
   return boards.find((board) => board.id === id)!;
 }
+
+export function getBoardByPathname(pathname: string): IBoard {
+  return boards.find((board) => pathname.endsWith(board.id))!;
+}

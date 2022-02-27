@@ -1,12 +1,10 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { FC } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import Tag from '../Tag';
 import { TicketBase } from './Ticket.styles';
 
 const Ticket: FC<any> = ({ ticket, index }) => {
-  console.log(ticket.tags);
-
   return (
     <Draggable draggableId={ticket.id} index={index}>
       {(provided, { isDragging }) => (

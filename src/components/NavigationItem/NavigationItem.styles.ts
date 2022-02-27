@@ -1,5 +1,4 @@
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
-import { IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
@@ -19,8 +18,6 @@ export const NavigationItemBase = styled(Link)`
   text-decoration: none;
 
   ${({ sidebarStatus }: any) => {
-    console.log(sidebarStatus);
-
     if (sidebarStatus === 'collapsed') {
       return `
         justify-content: center;
@@ -43,17 +40,5 @@ export const NavigationItemBase = styled(Link)`
   &.${buttonUnstyledClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-`;
-
-export const NavigationItemMenuIcon = styled(IconButton)`
-  border-radius: 4px;
-  margin: 0;
-  padding: 3px;
-  height: 20px;
-  width: 20px;
-
-  &:hover {
-    background-color: #404040;
   }
 `;

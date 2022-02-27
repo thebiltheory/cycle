@@ -1,7 +1,7 @@
-import { Menu, MenuItem } from '@mui/material';
+import { Box, Menu, MenuItem } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { HiDotsHorizontal } from 'react-icons/hi';
-import { NavigationItemMenuIcon } from './NavigationItem.styles';
+import { ActionMenuIcon } from './ActionMenu.styles';
 
 const menuItems: any = [
   {
@@ -16,7 +16,7 @@ const menuItems: any = [
   },
 ];
 
-const NavigationItemMenu: FC<any> = () => {
+const ActionMenu: FC<any> = () => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
   const open = Boolean(anchorEl);
 
@@ -28,10 +28,10 @@ const NavigationItemMenu: FC<any> = () => {
   };
 
   return (
-    <>
-      <NavigationItemMenuIcon onClick={onClickHandle}>
+    <Box>
+      <ActionMenuIcon onClick={onClickHandle}>
         <HiDotsHorizontal color="white" />
-      </NavigationItemMenuIcon>
+      </ActionMenuIcon>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -61,8 +61,8 @@ const NavigationItemMenu: FC<any> = () => {
           );
         })}
       </Menu>
-    </>
+    </Box>
   );
 };
 
-export default NavigationItemMenu;
+export default ActionMenu;

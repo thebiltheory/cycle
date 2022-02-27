@@ -1,11 +1,44 @@
 import { TreeItem, TreeView } from '@mui/lab';
-
+import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { VscTriangleDown, VscTriangleRight } from 'react-icons/vsc';
+import { useLocation } from 'react-router-dom';
+import ActionMenu from '../components/ActionMenu';
 import NavigationItem from '../components/NavigationItem';
-import NavigationItemMenu from '../components/NavigationItem/NavigationItemMenu';
+import { getBoardByPathname } from '../mocks/boards';
 import { sections } from '../mocks/sections';
+import useUIState from '../state/hooks/useUIState';
 
 const BoardsNavigator = () => {
+  const { UIState } = useUIState();
+  const location = useLocation();
+  const [activeBoard, setActiveBoard] = useState<any>(null);
+
+  const isSidebarCollapsed = UIState.sidebarStatus === 'collapsed';
+
+  useEffect(() => {
+    if (isSidebarCollapsed) {
+      const board = getBoardByPathname(location.pathname);
+      setActiveBoard(board);
+    }
+  }, [isSidebarCollapsed, location.pathname]);
+
+  if (isSidebarCollapsed) {
+    return (
+      <Box mx="auto" py={3}>
+        <NavigationItem
+          variant="secondary"
+          to={`boards/${activeBoard?.id}`}
+          label={activeBoard?.name}
+          leftElement={activeBoard?.icon}
+          rightElement={ActionMenu}
+          // hideRightElementUntilHover
+          onClick={() => console.log('Onclick ...')}
+        />
+      </Box>
+    );
+  }
+
   return (
     <>
       <TreeView
@@ -29,8 +62,8 @@ const BoardsNavigator = () => {
                     to={`boards/${id}`}
                     label={name}
                     leftElement={icon}
-                    rightElement={NavigationItemMenu}
-                    hideRightElementUntilHover
+                    rightElement={ActionMenu}
+                    // hideRightElementUntilHover
                     onClick={() => console.log('Onclick ...')}
                   />
                 );
