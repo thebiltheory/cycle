@@ -1,6 +1,6 @@
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { Box, Stack } from '@mui/material';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useRef, useState } from 'react';
 import { useMatch, useResolvedPath } from 'react-router-dom';
 import useUIState from '../../state/hooks/useUIState';
 import { INavigationItemProps } from './NavigationItem.interface';
@@ -16,6 +16,7 @@ const NavigationItem: FC<INavigationItemProps> = ({
   to,
   ...props
 }) => {
+  const NavigationItemRef = useRef(null);
   const [hideRightElement, setHideRightElement] = useState(
     hideRightElementUntilHover,
   );
@@ -23,6 +24,20 @@ const NavigationItem: FC<INavigationItemProps> = ({
   const { UIState } = useUIState();
   const resolved = useResolvedPath(to);
   const active = useMatch({ path: resolved?.pathname, end: true });
+
+  const onMouseEnter = () => {
+    setHideRightElement(false);
+  };
+
+  const onMouseLeave = () => {
+    setHideRightElement(true);
+  };
+
+  const onClickHandler = (event: MouseEvent<HTMLElement>) => {
+    if (onClick) {
+      onClick(event);
+    }
+  };
 
   const styleProps: any = {
     main: {
@@ -53,18 +68,9 @@ const NavigationItem: FC<INavigationItemProps> = ({
     },
   };
 
-  const onClickHandler = (event: MouseEvent<HTMLElement>) => {
-    if (onClick) {
-      onClick(event);
-    }
-  };
-
-  const onHoverHandler = () => {
-    setHideRightElement(!hideRightElement);
-  };
-
   return (
     <ButtonUnstyled
+      ref={NavigationItemRef}
       to={to}
       component={NavigationItemBase}
       {...props}
@@ -73,8 +79,8 @@ const NavigationItem: FC<INavigationItemProps> = ({
       {...(active && styleProps.active)}
       {...(onClick && { onClick: onClickHandler })}
       {...(hideRightElementUntilHover && {
-        onMouseEnter: onHoverHandler,
-        onMouseLeave: onHoverHandler,
+        onMouseEnter,
+        onMouseLeave,
       })}
       sidebarStatus={UIState.sidebarStatus}
     >

@@ -1,6 +1,7 @@
 import { Box, Menu, MenuItem } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { HiDotsHorizontal } from 'react-icons/hi';
+import { IActionMenuProps } from './ActionMenu.interface';
 import { ActionMenuIcon } from './ActionMenu.styles';
 
 const menuItems: any = [
@@ -16,7 +17,7 @@ const menuItems: any = [
   },
 ];
 
-const ActionMenu: FC<any> = () => {
+const ActionMenu: FC<IActionMenuProps> = ({ variant = 'light' }) => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
   const open = Boolean(anchorEl);
 
@@ -30,7 +31,7 @@ const ActionMenu: FC<any> = () => {
   return (
     <Box>
       <ActionMenuIcon onClick={onClickHandle}>
-        <HiDotsHorizontal color="white" />
+        <HiDotsHorizontal color={variant === 'light' ? 'white' : '#999999'} />
       </ActionMenuIcon>
       <Menu
         id="basic-menu"

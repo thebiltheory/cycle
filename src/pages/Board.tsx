@@ -4,6 +4,7 @@ import BoardColumn from '../components/BoardColumn';
 import { getBoardById } from '../mocks/boards';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Box, Container, Stack, Typography } from '@mui/material';
+import NewButton from '../components/NewButton';
 
 function Board() {
   const { id } = useParams();
@@ -98,6 +99,50 @@ function Board() {
     setIsDragging(true);
   };
 
+  const onClickNewGroupHandle = () => {
+    // Add new group Logic
+    console.log('Add new group clicked');
+    const newTicketId = `new-ticket-${Date.now()}`;
+    const newBoardData = {
+      ...boardData,
+      columnOrder: [...boardData.columnOrder, `${newTicketId}`],
+      columns: {
+        ...boardData.columns,
+        [`${newTicketId}`]: {
+          id: `${newTicketId}`,
+          icon: '🎉',
+          title: 'New Group (rename me)',
+          ticketIds: [],
+        },
+      },
+    };
+    setBoardData(newBoardData);
+  };
+
+  const onClickNewDocHandle = (columnId: string) => {
+    const newTicketId = `new-ticket-${Date.now()}`;
+    const newBoardData = {
+      ...boardData,
+      tickets: {
+        ...boardData.tickets,
+        [newTicketId]: {
+          id: newTicketId,
+          content: 'New Ticket (rename me)',
+          tags: null,
+        },
+      },
+      columns: {
+        ...boardData.columns,
+        [columnId]: {
+          ...boardData.columns[columnId],
+          ticketIds: [...boardData.columns[columnId].ticketIds, newTicketId],
+        },
+      },
+    };
+
+    setBoardData(newBoardData);
+  };
+
   return (
     <Stack height="100vh" py={2} overflow="hidden" spacing={2}>
       <Stack direction="row" spacing={2} px={4} alignItems="center">
@@ -134,10 +179,18 @@ function Board() {
                     tickets={tickets}
                     isDragging={isDragging}
                     index={index}
+                    onClickNewDoc={onClickNewDocHandle}
                   />
                 );
               })}
               {provided.placeholder}
+              <Box minWidth={270}>
+                <NewButton
+                  label="New Group"
+                  onClick={onClickNewGroupHandle}
+                  fullWidth
+                />
+              </Box>
             </Stack>
           )}
         </Droppable>

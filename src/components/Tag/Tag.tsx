@@ -1,12 +1,12 @@
-import { FC, useRef, useState, useEffect } from 'react';
 import { Tooltip } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
 import { TagBase } from './Tag.styles';
 
 const Tag: FC<any> = ({ type = 'outlined', label, colorScheme }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    if (label.length >= 16) {
+    if (label.length >= 17) {
       setShowTooltip(true);
     }
   }, [label]);

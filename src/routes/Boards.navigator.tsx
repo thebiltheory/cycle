@@ -52,7 +52,7 @@ const BoardsNavigator = () => {
               key={id}
               nodeId={id}
               label={name}
-              sx={{ marginBottom: 1 }}
+              sx={{ marginBottom: 1, fontWeight: 'bold' }}
             >
               {boards?.map(({ id, name, icon }: any) => {
                 return (
@@ -62,8 +62,8 @@ const BoardsNavigator = () => {
                     to={`boards/${id}`}
                     label={name}
                     leftElement={icon}
-                    rightElement={ActionMenu}
-                    // hideRightElementUntilHover
+                    rightElement={<ActionMenu />}
+                    hideRightElementUntilHover
                     onClick={() => console.log('Onclick ...')}
                   />
                 );
