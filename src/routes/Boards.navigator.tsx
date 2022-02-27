@@ -5,6 +5,7 @@ import { VscTriangleDown, VscTriangleRight } from 'react-icons/vsc';
 import { useLocation } from 'react-router-dom';
 import ActionMenu from '../components/ActionMenu';
 import NavigationItem from '../components/NavigationItem';
+import NewButton from '../components/NewButton';
 import { getBoardByPathname } from '../mocks/boards';
 import { sections } from '../mocks/sections';
 import useUIState from '../state/hooks/useUIState';
@@ -71,6 +72,7 @@ const BoardsNavigator = () => {
             </TreeItem>
           );
         })}
+        <NewButton label="New Section" fullWidth />
       </TreeView>
     </>
   );

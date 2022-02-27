@@ -8,7 +8,7 @@ const blue = {
 };
 
 export const NewButtonBase = styled('button')`
-  font-weight: medium;
+  font-weight: 500;
   font-size: 0.875rem;
   background-color: transparent;
   padding: 8px 16px;
