@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { FC } from 'react';
 import Sidebar from '../Sidebar';
 import { IShell } from './Shell.interface';

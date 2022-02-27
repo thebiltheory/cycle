@@ -1,10 +1,10 @@
+import { Box, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import BoardColumn from '../components/BoardColumn';
-import { getBoardById } from '../mocks/boards';
-import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import { Box, Container, Stack, Typography } from '@mui/material';
 import NewButton from '../components/NewButton';
+import { getBoardById } from '../mocks/boards';
 
 function Board() {
   const { id } = useParams();

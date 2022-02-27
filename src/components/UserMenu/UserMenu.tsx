@@ -1,9 +1,6 @@
-import { Avatar, Box, Divider, MenuItem, Stack } from '@mui/material';
+import { Avatar, MenuItem, Stack } from '@mui/material';
 import { useState } from 'react';
-import { CgExtensionAdd } from 'react-icons/cg';
 import { HiChevronDown } from 'react-icons/hi';
-import { ReactComponent as CycleLogo } from '../../assets/logos/cycle-logo.svg';
-import { organisations } from '../../mocks/organisations';
 import { user } from '../../mocks/user';
 import useUIState from '../../state/hooks/useUIState';
 import DropdownButton from '../DropdownButton';
