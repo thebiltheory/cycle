@@ -42,4 +42,8 @@ export const ExpandDrawerButton = styled(IconButton)({
   position: 'absolute',
   left: -13,
   top: 16,
+
+  '&:hover': {
+    backgroundColor: '#2E48ED',
+  },
 });
